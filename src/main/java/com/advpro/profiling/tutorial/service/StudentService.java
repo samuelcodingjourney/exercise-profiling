@@ -13,8 +13,7 @@ import java.util.Optional;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Comparator;
-import java.util.Optional;
-
+import java.util.StringJoiner;
 /**
  * @author muhammad.khadafi
  */
@@ -50,11 +49,11 @@ public class StudentService {
 
     public String joinStudentNames() {
         List<Student> students = studentRepository.findAll();
-        String result = "";
+        StringJoiner joiner = new StringJoiner(", ");
         for (Student student : students) {
-            result += student.getName() + ", ";
+            joiner.add(student.getName());
         }
-        return result.substring(0, result.length() - 2);
+        return joiner.toString();
     }
 }
 
